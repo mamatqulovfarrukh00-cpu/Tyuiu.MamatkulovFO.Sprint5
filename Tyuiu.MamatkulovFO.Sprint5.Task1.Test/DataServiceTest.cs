@@ -1,8 +1,6 @@
 ﻿using Tyuiu.MamatkulovFO.Sprint5.Task1.Lib;
 namespace Tyuiu.MamatkulovFO.Sprint5.Task1.Test
 {
-
-
     public class DataServiceTests
     {
         [Fact]
