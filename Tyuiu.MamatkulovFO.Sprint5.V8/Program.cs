@@ -13,7 +13,7 @@ class Program
         Console.WriteLine("---|------");
         foreach (string line in File.ReadLines(filePath))
         {
-         
+         Console.WriteLine(line);
         }
 
         Console.WriteLine($"\nFile saved: {filePath}");
