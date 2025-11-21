@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-using Tyuiu.MamatkulovFO.Sprint5.Task1.V8.Lib;
-
+﻿using Tyuiu.MamatkulovFO.Sprint5.Task1.V8.Lib;
 namespace Tyuiu.MamatkulovFO.Sprint5.Task1.V8.Test
 {
     /// <summary>
