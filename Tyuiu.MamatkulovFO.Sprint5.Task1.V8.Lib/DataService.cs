@@ -7,7 +7,7 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task1.V8.Lib
     /// <summary>
     /// Класс для вычисления функции F(x) и сохранения результатов в текстовый файл.
     /// </summary>
-    public class DataService
+    public class DataService:ISprint5Task1V8
     {
         /// <summary>
         /// Вычисляет значения функции F(x) = 4 - 2x + (2 + cos(x)) / (2x - 2)
