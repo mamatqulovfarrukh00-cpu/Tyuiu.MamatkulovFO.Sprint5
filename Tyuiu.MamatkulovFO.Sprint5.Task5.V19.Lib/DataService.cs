@@ -11,7 +11,7 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Lib
             var numbers = File.ReadAllText(path)
                               .Split(',')
                               .Select(s => double.Parse(s.Trim()))
-                              .Where(n => n >= 1 && n <= 9 && n == (int)n)
+                              .Where(n => n >= 1 && n <= 9 && n == Math.Floor(n)) // bir xonali butun sonlar
                               .Select(n => (int)n)
                               .ToList();
 
@@ -20,6 +20,6 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Lib
 
             return Math.Round((double)(max - min), 3);
         }
-     }
+    }
 }
 
