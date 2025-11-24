@@ -11,7 +11,7 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Lib
             var numbers = File.ReadAllText(path)
                               .Split(',')
                               .Select(s => double.Parse(s.Trim()))
-                              .Where(n => n >= 1 && n <= 9 && n == Math.Floor(n)) // bir xonali butun sonlar
+                              .Where(n => n >= 1 && n <= 9 && n == Math.Floor(n))
                               .Select(n => (int)n)
                               .ToList();
 

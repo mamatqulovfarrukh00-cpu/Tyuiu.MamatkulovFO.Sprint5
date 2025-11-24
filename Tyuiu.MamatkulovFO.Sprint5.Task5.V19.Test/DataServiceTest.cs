@@ -5,18 +5,22 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Test
 {
     [TestClass]
     public class DataServiceTest
-    { 
+    {
         [TestMethod]
-            public void TestMethod1()
-            {
-                var service = new DataService();
-                string path = Path.Combine(Path.GetTempPath(), "InputDataFileTask5V19.txt");
-                double result = service.LoadFromDataFile(path);
-                Assert.AreEqual(8.0, result); // masalan, agar 1 va 9 bor bo'lsa
-            }
-        
-       
-       
-          
+        public void TestMethod1()
+        {
+           
+            string tempFile = Path.GetTempFileName();
+            File.WriteAllText(tempFile, "16, 15.24, 9, 8, 11, 19, -3.43, -6, 9.4, 20, 11.67, 1.72");
+
+            var service = new DataService();
+            double result = service.LoadFromDataFile(tempFile);
+
+            
+            Assert.AreEqual(1.0, result);
+
+           
+            File.Delete(tempFile);
+        }
     }
 }

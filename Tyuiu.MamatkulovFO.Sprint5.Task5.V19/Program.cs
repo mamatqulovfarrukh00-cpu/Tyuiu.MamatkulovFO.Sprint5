@@ -7,20 +7,18 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19
     {
         static void Main()
         {
+            // Faylni temp papkada yaratamiz
+            string tempFile = Path.GetTempFileName();
+            File.WriteAllText(tempFile, "16, 15.24, 9, 8, 11, 19, -3.43, -6, 9.4, 20, 11.67, 1.72");
+
             var service = new DataService();
+            double result = service.LoadFromDataFile(tempFile);
 
-            // Fayl yo'lini Path.Combine() yordamida tuzamiz
-            string folder = @"C:\DataSprint5";
-            string fileName = "InputDataFileTask5V19.txt";
-            string path = Path.Combine(folder, fileName);
-
-            // Agar papka mavjud emas bo'lsa, yaratamiz
-            if (!Directory.Exists(folder))
-                Directory.CreateDirectory(folder);
-
-            double result = service.LoadFromDataFile(path);
-            Console.WriteLine(result);
+            Console.WriteLine(result); // Chiqish: 1.000
             Console.ReadKey();
+
+            // Faylni o'chirish
+            File.Delete(tempFile);
         }
     }
 }
