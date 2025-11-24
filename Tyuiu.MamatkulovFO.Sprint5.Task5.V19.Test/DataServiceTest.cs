@@ -12,7 +12,7 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Test
             var service = new DataService();
             string path = @"C:\DataSprint5\InputDataFileTask5V19.txt";
             double result = service.LoadFromDataFile(path);
-            Assert.AreEqual(8.0, result); // Пример: если min=1, max=9 → 9-1=8
+            Assert.AreEqual(8.0, result); // masalan, agar 1 va 9 bor bo'lsa
         }
     }
 }
