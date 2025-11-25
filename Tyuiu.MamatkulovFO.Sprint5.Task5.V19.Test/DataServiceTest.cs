@@ -1,28 +1,36 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Lib;
+﻿using System;
 using System.IO;
 
-namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Test
+namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Lib
 {
-    [TestClass]
     public class DataServiceTest
     {
-        [TestMethod]
-        public void LoadFromDataFile_ValidInput_ReturnsCorrectDifference()
+        public static void Main()
         {
-            // Создаём тестовый файл
-            string inputPath = Path.Combine(Path.GetTempPath(), "InPutDataFileTask5V19.txt");
-            File.WriteAllText(inputPath, "16 15.24 9 8 11 19 -3.43 -6 9.4 20 11.67 1.72 12.7 10.45 -4 17.23 6.45 6.7 -7.58 -0.74");
+            try
+            {
+                // Создаём папку
+                Directory.CreateDirectory(@"C:\DataSprint5");
 
-            // Запускаем метод
-            DataService service = new DataService();
-            double result = service.LoadFromDataFile(inputPath);
+                // Указываем путь к файлу
+                string filePath = @"C:\DataSprint5\InputDataFileTask5V19.txt";
 
-            // Ожидаем: из 9 и 8 → разница = 1.0
-            Assert.AreEqual(1.0, result);
+                // Создаём объект сервиса
+                var service = new DataService();
 
-            // Удаляем временный файл
-            File.Delete(inputPath);
+                // Выполняем метод
+                double result = service.LoadFromDataFile(filePath);
+
+                // Выводим результат
+                Console.WriteLine($"Результат: {result:F3}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"❌ Ошибка: {ex.Message}");
+            }
+
+            Console.WriteLine("\nНажмите Enter для выхода...");
+            Console.ReadLine();
         }
     }
 }

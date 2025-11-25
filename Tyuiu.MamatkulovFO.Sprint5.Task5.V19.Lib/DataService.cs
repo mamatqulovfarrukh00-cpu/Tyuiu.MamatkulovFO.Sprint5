@@ -15,9 +15,9 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Lib
             // Разбиваем по пробелам, убираем пустые
             var numbers = content
                 .Split(new char[] { ' ', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries)
-                .Select(s => double.Parse(s.Trim()))
+                .Select(s => double.Parse(s.Trim())) // Парсим как double
                 .Where(n => n >= 1 && n <= 9 && Math.Abs(n - Math.Floor(n)) < 1e-10) // Целые от 1 до 9
-                .Select(n => (int)n)
+                .Select(n => (int)n) // Приводим к int
                 .ToList();
 
             // Находим макс и мин

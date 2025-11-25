@@ -1,26 +1,27 @@
-﻿using Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Lib;
-using System;
+﻿using System;         
 using System.IO;
+using System.Linq;
 
-namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19
+class Program
 {
-    class Program
+    static void Main()
     {
-        static void Main()
+        string path = @"C:\DataSprint5\InputDataFileTask5V19.txt";
+        Directory.CreateDirectory(@"C:\DataSprint5");
+
+        var nums = File.ReadAllText(path)
+                      .Split(' ', StringSplitOptions.RemoveEmptyEntries)
+                      .Where(s => double.TryParse(s, out double v) && v >= 1 && v <= 9 && v == (int)v)
+                      .Select(int.Parse)
+                      .ToList();
+
+        if (nums.Count == 0)
         {
-            string inputPath = @"C:\DataSprint5\InPutDataFileTask5V19.txt";
-
-            // Если файла нет — создаём пример
-            if (!File.Exists(inputPath))
-                File.WriteAllText(inputPath, "16 15.24 9 8 11 19 -3.43 -6 9.4 20 11.67 1.72 12.7 10.45 -4 17.23 6.45 6.7 -7.58 -0.74");
-
-            // Обработка
-            DataService service = new DataService();
-            double result = service.LoadFromDataFile(inputPath);
-
-            // Вывод в консоль
-            Console.WriteLine($"Разница между max и min однозначными целыми числами: {result:F3}");
-            Console.ReadKey();
+            Console.WriteLine("❌ Нет подходящих чисел.");
+            return;
         }
+
+       
+      
     }
 }
