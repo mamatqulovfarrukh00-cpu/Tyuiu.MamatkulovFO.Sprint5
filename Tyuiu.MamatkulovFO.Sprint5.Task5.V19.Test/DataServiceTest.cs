@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
-
-namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Lib
+using Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Lib;
+namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Test
 {
     public class DataServiceTest
     {
