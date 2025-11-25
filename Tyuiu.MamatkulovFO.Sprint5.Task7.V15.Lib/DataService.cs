@@ -1,9 +1,9 @@
 ﻿using System.IO;
 using System.Linq;
-
+using tyuiu.cources.programming.interfaces.Sprint5;
 namespace Tyuiu.MamatkulovFO.Sprint5.Task7.V15.Lib
 {
-    public class DataService
+    public class DataService:ISprint5Task7V15
     {
         public string LoadDataAndSave(string path)
         {
