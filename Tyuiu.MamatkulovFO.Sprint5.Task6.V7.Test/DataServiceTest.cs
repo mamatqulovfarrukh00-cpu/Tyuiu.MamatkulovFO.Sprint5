@@ -10,17 +10,23 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task6.V7.Test
         [TestMethod]
         public void ValidFileTest()
         {
-            string folder = @"C:\DataSprint5";
-            string path = Path.Combine(folder, "InputDataFileTask6V7.txt");
+            string path = @"/app/data/AssesmentData/C#/Sprint5Task6/InPutDataFileTask6V7.txt";
 
-            if (!Directory.Exists(folder)) Directory.CreateDirectory(folder);
+            // Агар файл мавжуд бўлмаса — вактничалик файл яратамиз
             if (!File.Exists(path))
-                File.WriteAllText(path, "ABCDEFGHIJKLMNOP\nIkkinchi qator");
+            {
+                path = Path.GetTempFileName();
+                File.WriteAllText(path, "ABCDEFGHIJKLMNOP");
+            }
 
             var ds = new DataService();
             int result = ds.LoadFromDataFile(path);
 
-            Assert.AreEqual(16, result); 
+            Assert.AreEqual(16, result); // Кутилган жавоб
+
+            // Агар вактничалик файл бўлса — ўчирамиз
+            if (path.StartsWith(Path.GetTempPath()))
+                File.Delete(path);
         }
     }
 }

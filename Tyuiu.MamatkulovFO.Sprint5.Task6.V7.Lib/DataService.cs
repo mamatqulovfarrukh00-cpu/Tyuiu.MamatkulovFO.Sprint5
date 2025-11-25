@@ -8,7 +8,7 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task6.V7.Lib
     {
         public int LoadFromDataFile(string path)
         {
-            string line = File.ReadLines(path).First(); 
+            string line = File.ReadLines(path).First(); // ФАҚАТ БИРИНЧИ ҚАТОР
             return line.Count(c => (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
         }
     }
