@@ -10,16 +10,17 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task6.V7.Test
         [TestMethod]
         public void ValidFileTest()
         {
-            string tempFile = Path.GetTempFileName();
-            // Биринчи қаторда 16 та лотин ҳарф бўлишини имитация қиламиз
-            File.WriteAllText(tempFile, "This is test line with 16 letters ABCDEFGHIJKLMNOP\nSecond line");
+            string folder = @"C:\DataSprint5";
+            string path = Path.Combine(folder, "InputDataFileTask6V7.txt");
 
-            DataService ds = new DataService();
-            int result = ds.LoadFromDataFile(tempFile);
+            if (!Directory.Exists(folder)) Directory.CreateDirectory(folder);
+            if (!File.Exists(path))
+                File.WriteAllText(path, "ABCDEFGHIJKLMNOP\nIkkinchi qator");
 
-            Assert.AreEqual(16, result); // КУТИЛГАН ЖАВОБ
+            var ds = new DataService();
+            int result = ds.LoadFromDataFile(path);
 
-            File.Delete(tempFile);
+            Assert.AreEqual(16, result); 
         }
     }
 }

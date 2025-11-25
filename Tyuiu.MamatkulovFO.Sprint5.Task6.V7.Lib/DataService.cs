@@ -8,10 +8,7 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task6.V7.Lib
     {
         public int LoadFromDataFile(string path)
         {
-            // Фақат биринчи қаторни ўқиймиз
-            string line = File.ReadLines(path).First();
-
-            // Фақат a-z ва A-Z ҳарфларини санаймиз
+            string line = File.ReadLines(path).First(); 
             return line.Count(c => (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
         }
     }

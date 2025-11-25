@@ -7,19 +7,25 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task6.V7
     {
         static void Main(string[] args)
         {
-            string path = @"C:\DataSprint5\InputDataFileTask6V7.txt";
+            string folder = @"C:\DataSprint5";
+            string fileName = "InputDataFileTask6V7.txt";
+            string path = Path.Combine(folder, fileName);
 
-            // Агар файл мавжуд бўлмаса, вактничалик файл яратамиз (текшириш учун)
+           
+            if (!Directory.Exists(folder))
+                Directory.CreateDirectory(folder);
+
+           
             if (!File.Exists(path))
             {
-                path = Path.Combine(Path.GetTempPath(), "InputDataFileTask6V7.txt");
-                File.WriteAllText(path, "This is test line with 16 letters ABCDEFGHIJKLMNOP");
+               
+                File.WriteAllText(path, "ABCDEFGHIJKLMNO\nIkkinchi qator — bu e'tiborsiz");
             }
 
             DataService ds = new DataService();
-            int latinCount = ds.LoadFromDataFile(path);
+            int count = ds.LoadFromDataFile(path);
 
-            Console.WriteLine($"Количество латинских букв в первой строке: {latinCount}");
+            Console.WriteLine($"Ответь: {count}"); 
             Console.ReadKey();
         }
     }
