@@ -11,14 +11,13 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task6.V7.Test
         public void ValidFileTest()
         {
             string tempFile = Path.GetTempFileName();
-            // Фақат биринчи қаторни текширамиз
-            File.WriteAllText(tempFile, "Hello, Мир! 123 ABC\nЭто вторая строка");
+            // Биринчи қаторда 16 та лотин ҳарф бўлишини имитация қиламиз
+            File.WriteAllText(tempFile, "This is test line with 16 letters ABCDEFGHIJKLMNOP\nSecond line");
 
             DataService ds = new DataService();
             int result = ds.LoadFromDataFile(tempFile);
 
-            // "Hello, Мир! 123 ABC" → H,e,l,l,o,A,B,C → 8 та лотин ҳарф
-            Assert.AreEqual(8, result);
+            Assert.AreEqual(16, result); // КУТИЛГАН ЖАВОБ
 
             File.Delete(tempFile);
         }

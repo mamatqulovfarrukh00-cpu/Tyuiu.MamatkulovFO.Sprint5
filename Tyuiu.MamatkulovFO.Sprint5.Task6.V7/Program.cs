@@ -7,14 +7,13 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task6.V7
     {
         static void Main(string[] args)
         {
-            // Кутулиган файл йўли (топшириқда берилган)
             string path = @"C:\DataSprint5\InputDataFileTask6V7.txt";
 
-            // Агар файл мавжуд бўлмаса, ишлатиш учун вактничалик файл яратамиз
+            // Агар файл мавжуд бўлмаса, вактничалик файл яратамиз (текшириш учун)
             if (!File.Exists(path))
             {
                 path = Path.Combine(Path.GetTempPath(), "InputDataFileTask6V7.txt");
-                File.WriteAllText(path, "Пример текста с ABC и 789!");
+                File.WriteAllText(path, "This is test line with 16 letters ABCDEFGHIJKLMNOP");
             }
 
             DataService ds = new DataService();
