@@ -9,16 +9,20 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Lib
     {
         public double LoadFromDataFile(string path)
         {
-            // Читаем файл и разбиваем по запятым
+            // Читаем файл
             string content = File.ReadAllText(path);
-            var numbers = content.Split(',')
-                                .Select(s => double.Parse(s.Trim())) // Парсим как double
-                                .Where(n => n >= 1 && n <= 9 && n == Math.Floor(n)) // Только однозначные целые (1-9)
-                                .ToList();
+
+            // Разбиваем по пробелам, убираем пустые
+            var numbers = content
+                .Split(new char[] { ' ', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries)
+                .Select(s => double.Parse(s.Trim()))
+                .Where(n => n >= 1 && n <= 9 && Math.Abs(n - Math.Floor(n)) < 1e-10) // Целые от 1 до 9
+                .Select(n => (int)n)
+                .ToList();
 
             // Находим макс и мин
-            int max = (int)numbers.Max();
-            int min = (int)numbers.Min();
+            int max = numbers.Max();
+            int min = numbers.Min();
 
             // Возвращаем разницу, округлённую до 3 знаков
             return Math.Round((double)(max - min), 3);
