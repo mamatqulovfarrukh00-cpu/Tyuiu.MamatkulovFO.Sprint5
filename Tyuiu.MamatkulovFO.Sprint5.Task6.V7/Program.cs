@@ -1,4 +1,8 @@
-﻿using Tyuiu.MamatkulovFO.Sprint5.Task6.V7.Lib;
+﻿// <summary>
+// Главная программа для запуска и проверки результата.
+// </summary>
+using Tyuiu.MamatkulovFO.Sprint5.Task6.V7.Lib;
+using System;
 using System.IO;
 
 namespace Tyuiu.MamatkulovFO.Sprint5.Task6.V7
@@ -7,19 +11,24 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task6.V7
     {
         static void Main(string[] args)
         {
-            string path = @"/app/data/AssesmentData/C#/Sprint5Task6/InPutDataFileTask6V7.txt";
+            // Путь строго по заданию: папка + имя файла с "InPut" (P заглавная!)
+            string path = @"C:\DataSprint5\InPutDataFileTask6V7.txt";
 
-            // Агар файл мавжуд бўлмаса — вактничалик файл яратамиз (текшириш учун)
+            // Проверяем, существует ли файл
             if (!File.Exists(path))
             {
-                path = Path.GetTempFileName();
-                File.WriteAllText(path, "ABCDEFGHIJKLMNOP"); // 16 та лотин ҳарф
+                Console.WriteLine("Ошибка: Файл не найден по пути C:\\DataSprint5\\InPutDataFileTask6V7.txt");
+                Console.WriteLine("Создайте папку C:\\DataSprint5 и поместите туда файл InPutDataFileTask6V7.txt");
+                Console.ReadKey();
+                return;
             }
 
-            var ds = new DataService();
-            int count = ds.LoadFromDataFile(path);
+            // Выполняем задачу
+            DataService ds = new DataService();
+            int result = ds.LoadFromDataFile(path);
 
-            Console.WriteLine($"Ответ: {count}"); // Консольда 16 чоп этилади
+            // Выводим результат
+            Console.WriteLine($"Ответ: {result}");
             Console.ReadKey();
         }
     }

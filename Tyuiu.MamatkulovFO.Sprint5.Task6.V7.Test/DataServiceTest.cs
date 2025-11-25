@@ -1,4 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿// <summary>
+// Тест для проверки корректности работы метода LoadFromDataFile.
+// </summary>
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Tyuiu.MamatkulovFO.Sprint5.Task6.V7.Lib;
 using System.IO;
 
@@ -10,23 +13,19 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task6.V7.Test
         [TestMethod]
         public void ValidFileTest()
         {
-            string path = @"/app/data/AssesmentData/C#/Sprint5Task6/InPutDataFileTask6V7.txt";
+            // Создаём временный файл с ТОЧНЫМ содержимым из задания
+            string tempFile = Path.GetTempFileName();
+            File.WriteAllText(tempFile, "Hello, Мир! Это Is My First Program.");
 
-            // Агар файл мавжуд бўлмаса — вактничалик файл яратамиз
-            if (!File.Exists(path))
-            {
-                path = Path.GetTempFileName();
-                File.WriteAllText(path, "ABCDEFGHIJKLMNOP");
-            }
+            // Выполняем метод
+            DataService ds = new DataService();
+            int result = ds.LoadFromDataFile(tempFile);
 
-            var ds = new DataService();
-            int result = ds.LoadFromDataFile(path);
+            // Ожидаем 16 строчных латинских букв: e, l, l, o, s, y, i, r, s, t, r, o, g, r, a, m
+            Assert.AreEqual(16, result);
 
-            Assert.AreEqual(16, result); // Кутилган жавоб
-
-            // Агар вактничалик файл бўлса — ўчирамиз
-            if (path.StartsWith(Path.GetTempPath()))
-                File.Delete(path);
+            // Удаляем временный файл
+            File.Delete(tempFile);
         }
     }
 }
