@@ -15,9 +15,9 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19
 
             var numbers = content
                 .Split(new char[] { ' ', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries)
-                .Where(s => double.TryParse(s.Trim(), out _)) // Faqat raqamlarni o'tkaz
+                .Where(s => double.TryParse(s.Trim(), out _)) 
                 .Select(s => double.Parse(s.Trim()))
-                .Where(n => n > 0 && n == Math.Floor(n)) // Faqat musbat BUTUN sonlar
+                .Where(n => n > 0 && n == Math.Floor(n))
                 .Select(n => (int)n)
                 .ToList();
 
