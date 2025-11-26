@@ -5,26 +5,33 @@ using tyuiu.cources.programming.interfaces.Sprint5;
 
 namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Lib
 {
-    public class DataService : ISprint5Task5V19
+    public class DataService:ISprint5Task5V19
     {
+        /// <summary>
+        /// Загружает данные из файла, находит разницу между максимальным и минимальным однозначными целыми числами.
+        /// </summary>
+        /// <param name="path">Путь к файлу с данными</param>
+        /// <returns>Разница между максимумом и минимумом, округлённая до трёх знаков после запятой</returns>
         public double LoadFromDataFile(string path)
         {
-            // Читаем файл
+            if (!File.Exists(path))
+                throw new FileNotFoundException("Файл не найден", path);
+
             string content = File.ReadAllText(path);
 
-            // Разбиваем по пробелам, убираем пустые
             var numbers = content
                 .Split(new char[] { ' ', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries)
-                .Select(s => double.Parse(s.Trim())) // Парсим как double
-                .Where(n => n >= 1 && n <= 9 && Math.Abs(n - Math.Floor(n)) < 1e-10) // Целые от 1 до 9
-                .Select(n => (int)n) // Приводим к int
+                .Select(s => double.Parse(s.Trim()))
+                .Where(n => n >= 1 && n <= 9 && Math.Abs(n - Math.Floor(n)) < 1e-10)
+                .Select(n => (int)n)
                 .ToList();
 
-            // Находим макс и мин
+            if (numbers.Count == 0)
+                throw new InvalidOperationException("В файле нет подходящих однозначных целых чисел.");
+
             int max = numbers.Max();
             int min = numbers.Min();
 
-            // Возвращаем разницу, округлённую до 3 знаков
             return Math.Round((double)(max - min), 3);
         }
     }
