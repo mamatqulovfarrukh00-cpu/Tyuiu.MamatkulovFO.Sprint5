@@ -24,11 +24,8 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task1.V8.Lib
                     result = 4 - 2 * x + (2 + Math.Cos(x)) / (2 * x - 2);
                 }
 
-                string line = $"{x};{result:F2}";
-                sb.AppendLine(line);
-
-                // Konsolga ham chiqarish
-                Console.WriteLine(line);
+                // Faqat F(x) qiymatini yozamiz, x ni emas!
+                sb.AppendLine($"{result:F2}");
             }
 
             File.WriteAllText(filePath, sb.ToString());

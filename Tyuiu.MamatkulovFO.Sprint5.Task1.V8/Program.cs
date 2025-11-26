@@ -11,7 +11,14 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task1.V8
             Console.WriteLine("--------------------------------------------------");
 
             var service = new DataService();
-            service.SaveToFileTextData(-5, 5);
+            string path = service.SaveToFileTextData(-5, 5);
+
+            // Fayldan o'qib konsolga chiqaramiz (agar kerak bo'lsa)
+            string[] lines = File.ReadAllLines(path);
+            foreach (string line in lines)
+            {
+                Console.WriteLine(line);
+            }
 
             Console.WriteLine("--------------------------------------------------");
             Console.WriteLine("Результат сохранен в файл. Нажмите Enter для выхода...");
