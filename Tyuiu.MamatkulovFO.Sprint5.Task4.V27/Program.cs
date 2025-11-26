@@ -18,7 +18,9 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task4.V27
             }
 
             var service = new DataService();
-            double result = service.CalculateFormulaFromDataFile(filePath); 
+            double result = service.CalculateFormulaFromDataFile(filePath);
+
+            // Вывод результата в формате с точкой
             Console.WriteLine($"Результат: {result:F3}");
             Console.WriteLine("--------------------------------------------------");
             Console.WriteLine("Нажмите Enter для выхода...");
