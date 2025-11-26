@@ -1,8 +1,11 @@
 ﻿using System;
 using System.IO;
+
 using Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Lib;
+
 namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Test
 {
+    [TestClass]
     public class DataServiceTest
     {
         public static void Main()
@@ -34,3 +37,4 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Test
         }
     }
 }
+
