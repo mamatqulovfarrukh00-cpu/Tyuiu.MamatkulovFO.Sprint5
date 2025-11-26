@@ -9,31 +9,21 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Lib
     {
         public double LoadFromDataFile(string path)
         {
-            if (!File.Exists(path))
-                throw new FileNotFoundException("Файл не найден", path);
-
             string content = File.ReadAllText(path);
 
             var numbers = content
                 .Split(new char[] { ' ', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries)
-                .Select(s =>
-                {
-                    if (double.TryParse(s.Trim(), out double value))
-                        return (double?)value;
-                    else
-                        return null;
-                })
-                .Where(n => n.HasValue && n.Value > 0) 
-                .Select(n => (int)Math.Floor(n.Value))
+                .Where(s => double.TryParse(s, out _)) // Faqat sonlarni o'tkaz
+                .Select(s => double.Parse(s))
+                .Where(n => n > 0) // Faqat musbat
+                .Select(n => (int)Math.Floor(n)) // Butun qismiga yaxlitlash
+                .Where(n => n <= 16) // 16 dan katta sonlarni o'tkazib yuborish
                 .ToList();
-
-            if (numbers.Count == 0)
-                throw new InvalidOperationException("В файле нет подходящих чисел.");
 
             int max = numbers.Max();
             int min = numbers.Min();
 
-            return Math.Round((double)(max - min), 3);
+            return Math.Round(max - min, 3);
         }
     }
 }
