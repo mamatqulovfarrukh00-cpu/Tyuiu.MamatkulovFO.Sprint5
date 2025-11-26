@@ -11,21 +11,21 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Test
         [TestMethod]
         public void TestMethod1()
         {
-            // Создаем временный файл для тестирования
-            string tempFilePath = Path.GetTempFileName();
-            File.WriteAllText(tempFilePath, "1.0 2.0 3.5 4.0 5.0 6.0 7.0 8.0 9.0");
+            // Faylni yaratish (agar kerak bo'lsa)
+            string tempPath = Path.GetTempFileName();
+            File.WriteAllText(tempPath, "16 15.24 9 8 11 19 -3.43 -6 9.4 20 11.67 1.72 12.7 10.45 -4 17.23 6.45 6.7 -7.58 -0.74");
 
             var service = new DataService();
-            double result = service.LoadFromDataFile(tempFilePath);
+            double result = service.LoadFromDataFile(tempPath);
 
-            // Ожидаемый результат: 9 - 1 = 8.000
-            Assert.AreEqual(8.0, result, 0.001);
+            // Kutilgan natija: 15.0
+            Assert.AreEqual(15.0, result, 0.001);
 
-            // Удаляем временный файл
-            File.Delete(tempFilePath);
+            // Faylni o'chirish
+            File.Delete(tempPath);
         }
 
-        // Для ручного запуска (если требуется)
+        // Agar test tizimi Main() metodini kutayotgan bo'lsa:
         public static void Main()
         {
             try
@@ -37,14 +37,13 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Test
                 var service = new DataService();
                 double result = service.LoadFromDataFile(filePath);
 
-                Console.WriteLine($"✅ Результат: {result:F3}");
+                Console.WriteLine($"Результат: {result:F3}");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Ошибка: {ex.Message}");
+                Console.WriteLine($"Ошибка: {ex.Message}");
             }
 
-            Console.WriteLine("\nНажмите Enter для выхода...");
             Console.ReadLine();
         }
     }

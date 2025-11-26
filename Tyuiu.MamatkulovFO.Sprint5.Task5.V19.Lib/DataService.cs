@@ -25,12 +25,12 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Lib
                 })
                 .Where(n => n.HasValue)
                 .Select(n => n.Value)
-                .Where(n => n >= 1 && n <= 9 && Math.Abs(n - Math.Floor(n)) < 1e-10)
-                .Select(n => (int)n)
+                .Where(n => n > 0) // Faqat musbat sonlar
+                .Select(n => (int)Math.Floor(n)) // Butun qismiga yaxlitlash
                 .ToList();
 
             if (numbers.Count == 0)
-                throw new InvalidOperationException("В файле нет подходящих однозначных целых чисел.");
+                throw new InvalidOperationException("В файле нет подходящих чисел.");
 
             int max = numbers.Max();
             int min = numbers.Min();
