@@ -23,8 +23,8 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Lib
                     else
                         return null;
                 })
-                .Where(n => n.HasValue && n.Value > 0)
-                .Select(n => (int)Math.Floor(n.Value)) 
+                .Where(n => n.HasValue && n.Value > 0) 
+                .Select(n => (int)Math.Floor(n.Value))
                 .ToList();
 
             if (numbers.Count == 0)
