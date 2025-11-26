@@ -25,16 +25,19 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task1.V8.Lib
                 }
 
                 string formattedResult;
-                if (Math.Abs(result) < 1e-10) 
+                if (Math.Abs(result) < 1e-10)
                 {
                     formattedResult = "0";
                 }
                 else
                 {
-                  
-                    formattedResult = result.ToString("F1");
-                   
-                    if (formattedResult.EndsWith(",0"))
+                    formattedResult = result.ToString("F2");
+                    // Agar oxirgi raqam 0 bo'lsa, olib tashlash
+                    if (formattedResult.EndsWith(",00"))
+                    {
+                        formattedResult = formattedResult.Substring(0, formattedResult.Length - 3);
+                    }
+                    else if (formattedResult.EndsWith(",0"))
                     {
                         formattedResult = formattedResult.Substring(0, formattedResult.Length - 2);
                     }
