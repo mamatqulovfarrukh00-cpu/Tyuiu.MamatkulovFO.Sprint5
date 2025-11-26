@@ -7,11 +7,6 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Lib
 {
     public class DataService:ISprint5Task5V19
     {
-        /// <summary>
-        /// Загружает данные из файла, находит разницу между максимальным и минимальным однозначными целыми числами.
-        /// </summary>
-        /// <param name="path">Путь к файлу с данными</param>
-        /// <returns>Разница между максимумом и минимумом, округлённая до трёх знаков после запятой</returns>
         public double LoadFromDataFile(string path)
         {
             if (!File.Exists(path))
@@ -21,7 +16,15 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Lib
 
             var numbers = content
                 .Split(new char[] { ' ', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries)
-                .Select(s => double.Parse(s.Trim()))
+                .Select(s =>
+                {
+                    if (double.TryParse(s.Trim(), out double value))
+                        return (double?)value;
+                    else
+                        return null;
+                })
+                .Where(n => n.HasValue)
+                .Select(n => n.Value)
                 .Where(n => n >= 1 && n <= 9 && Math.Abs(n - Math.Floor(n)) < 1e-10)
                 .Select(n => (int)n)
                 .ToList();
