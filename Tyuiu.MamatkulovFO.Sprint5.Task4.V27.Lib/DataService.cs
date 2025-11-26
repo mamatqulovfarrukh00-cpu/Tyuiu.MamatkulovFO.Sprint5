@@ -1,16 +1,16 @@
-﻿using System;
-using System.Globalization;
-using System.IO;
+﻿using System.Globalization;
 using tyuiu.cources.programming.interfaces.Sprint5;
 namespace Tyuiu.MamatkulovFO.Sprint5.Task4.V27.Lib
 {
     public class DataService : ISprint5Task4V27
     {
-        public double CalculateFormulaFromDataFile(string tempPath)
+        public double LoadFromDataFile(string path)
         {
+           
+        
             // Чтение данных из файла
-            string content = File.ReadAllText(tempPath).Trim();
-            double x = double.Parse(content, CultureInfo.InvariantCulture); // Чтение числа в формате с точкой
+            string content = File.ReadAllText(path).Trim();
+            double x = double.Parse(content, CultureInfo.InvariantCulture);
 
             // Формула: y = (x^3 - 4x) / cos(x)
             double numerator = Math.Pow(x, 3) - 4 * x;
@@ -26,5 +26,5 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task4.V27.Lib
             return Math.Round(result, 3);
         }
     }
+    
 }
-

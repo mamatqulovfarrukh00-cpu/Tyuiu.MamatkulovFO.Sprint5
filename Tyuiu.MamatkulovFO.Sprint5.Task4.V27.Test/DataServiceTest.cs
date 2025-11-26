@@ -13,7 +13,7 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task4.V27.Test
             string tempPath = Path.Combine(Path.GetTempPath(), "InPutDataFileTask4V27.txt");
             File.WriteAllText(tempPath, "-1.26");
 
-            double result = service.CalculateFormulaFromDataFile(tempPath);
+            double result = service.LoadFromDataFile(tempPath); 
 
             Assert.AreEqual(1.985, result, 0.001);
         }
