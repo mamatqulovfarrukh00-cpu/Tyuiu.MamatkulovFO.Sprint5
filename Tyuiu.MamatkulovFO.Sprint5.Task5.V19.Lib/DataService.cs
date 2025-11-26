@@ -23,7 +23,7 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Lib
             int max = numbers.Max();
             int min = numbers.Min();
 
-            return Math.Round(max - min, 3);
+            return Max.Round(max - min, 3);
         }
     }
 }
