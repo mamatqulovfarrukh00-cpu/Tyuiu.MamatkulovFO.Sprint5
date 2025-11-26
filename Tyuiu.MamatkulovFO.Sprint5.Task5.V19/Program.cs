@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.IO;
 using System.Linq;
 using Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Lib;
@@ -27,20 +26,20 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19
                     .Select(s =>
                     {
                         if (double.TryParse(s.Trim(), out double value))
-                            return (double?)value; // Возвращаем nullable double
+                            return (double?)value;
                         else
-                            return null; // Если парсинг не удался — игнорируем
+                            return null;
                     })
-                    .Where(n => n.HasValue) // Только успешные парсинга
+                    .Where(n => n.HasValue)
                     .Select(n => n.Value)
-                    .Where(n => n >= 1 && n <= 9 && Math.Abs(n - Math.Floor(n)) < 1e-10) // Только целые однозначные числа
-                    .Select(n => (int)n) // Приводим к int
+                    .Where(n => n > 0) // Только положительные числа
+                    .Select(n => (int)Math.Floor(n)) // Приводим к целому (вниз)
                     .ToList();
 
                 // Проверяем, есть ли подходящие числа
                 if (numbers.Count == 0)
                 {
-                    Console.WriteLine("❌ В файле нет подходящих однозначных целых чисел.");
+                    Console.WriteLine("❌ В файле нет положительных чисел.");
                     return;
                 }
 
@@ -60,7 +59,7 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19
             }
             catch (Exception ex)
             {
-                // Обрабатываем возможные ошибки (файл не найден, неверный формат данных и т.д.)
+                // Обрабатываем возможные ошибки
                 Console.WriteLine($"❌ Ошибка: {ex.Message}");
                 Console.WriteLine("\nНажмите Enter для выхода...");
                 Console.ReadLine();
