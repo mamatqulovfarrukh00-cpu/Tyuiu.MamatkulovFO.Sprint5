@@ -13,7 +13,7 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task1.V8
             var service = new DataService();
             string path = service.SaveToFileTextData(-5, 5);
 
-            // Fayldan o'qib konsolga chiqaramiz (agar kerak bo'lsa)
+            
             string[] lines = File.ReadAllLines(path);
             foreach (string line in lines)
             {
