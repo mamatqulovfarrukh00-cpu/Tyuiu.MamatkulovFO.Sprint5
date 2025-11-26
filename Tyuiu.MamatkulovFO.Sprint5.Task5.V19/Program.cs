@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Lib;
 
 namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19
 {
@@ -9,22 +8,24 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19
     {
         static void Main()
         {
-            string directoryPath = @"C:\DataSprint5";
-            Directory.CreateDirectory(directoryPath);
-            string filePath = Path.Combine(directoryPath, "InputDataFileTask5V19.txt");
+            string path = @"C:\DataSprint5\InputDataFileTask5V19.txt";
+            Directory.CreateDirectory(@"C:\DataSprint5");
 
-            try
-            {
-                var service = new DataService();
-                double result = service.LoadFromDataFile(filePath);
-                Console.WriteLine($"Результат: {result:F3}");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Ошибка: {ex.Message}");
-            }
+            string content = File.ReadAllText(path);
 
-            Console.ReadLine();
+            var numbers = content
+                .Split(new char[] { ' ', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries)
+                .Where(s => double.TryParse(s.Trim(), out _)) // Faqat raqamlarni o'tkaz
+                .Select(s => double.Parse(s.Trim()))
+                .Where(n => n > 0 && n == Math.Floor(n)) // Faqat musbat BUTUN sonlar
+                .Select(n => (int)n)
+                .ToList();
+
+            int max = numbers.Max();
+            int min = numbers.Min();
+            
+
+             Console.ReadLine();
         }
     }
 }
