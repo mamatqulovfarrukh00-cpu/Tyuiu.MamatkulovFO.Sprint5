@@ -1,15 +1,25 @@
-﻿using Tyuiu.MamatkulovFO.Sprint5.Task4.V27.Lib;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Tyuiu.MamatkulovFO.Sprint5.Task4.V27.Lib;
+
 namespace Tyuiu.MamatkulovFO.Sprint5.Task4.V27.Test
 {
+    [TestClass]
     public class DataServiceTest
     {
-        [Fact]
-        public void LoadFromDataFile_CreatesFileIfNotExists_ReturnsCorrectValue()
+        [TestMethod]
+        public void TestMethod1()
         {
             var service = new DataService();
-            string path = @"C:\DataSprint5\InPutDataFileTask4V0.txt";
-            double result = service.LoadFromDataFile(path);
-            Assert.IsTrue(double.IsFinite(result));
+            string tempPath = Path.Combine(Path.GetTempPath(), "InPutDataFileTask4V27.txt");
+
+            
+            File.WriteAllText(tempPath, "-1.26");
+
+            double result = service.CalculateFormulaFromDataFile(tempPath);
+
+           
+            Assert.AreEqual(1.985, result, 0.001);
         }
     }
 }
