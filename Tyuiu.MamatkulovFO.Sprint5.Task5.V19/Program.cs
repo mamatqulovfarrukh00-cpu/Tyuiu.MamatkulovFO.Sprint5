@@ -23,9 +23,17 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19
                 // Разбиваем строку на отдельные значения, удаляем пустые элементы
                 var numbers = content
                     .Split(new char[] { ' ', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries)
-                    .Select(s => double.Parse(s.Trim())) // Парсим как число с плавающей точкой
-                    .Where(n => n >= 1 && n <= 9 && Math.Abs(n - Math.Floor(n)) < 1e-10) // Оставляем только целые однозначные числа (от 1 до 9)
-                    .Select(n => (int)n) // Приводим к целому типу
+                    .Select(s =>
+                    {
+                        if (double.TryParse(s.Trim(), out double value))
+                            return (double?)value; // Возвращаем nullable double
+                        else
+                            return null; // Если парсинг не удался — игнорируем
+                    })
+                    .Where(n => n.HasValue) // Только успешные парсинга
+                    .Select(n => n.Value)
+                    .Where(n => n >= 1 && n <= 9 && Math.Abs(n - Math.Floor(n)) < 1e-10) // Только целые однозначные числа
+                    .Select(n => (int)n) // Приводим к int
                     .ToList();
 
                 // Проверяем, есть ли подходящие числа
