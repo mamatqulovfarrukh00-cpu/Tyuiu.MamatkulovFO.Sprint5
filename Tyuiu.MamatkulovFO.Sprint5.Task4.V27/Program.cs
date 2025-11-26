@@ -1,6 +1,5 @@
 ﻿using System;
 using Tyuiu.MamatkulovFO.Sprint5.Task4.V27.Lib;
-
 namespace Tyuiu.MamatkulovFO.Sprint5.Task4.V27
 {
     class Program
@@ -10,13 +9,13 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task4.V27
             Console.WriteLine("Формула: y = (x^3 - 4x) / cos(x)");
             Console.WriteLine("--------------------------------------------------");
 
-           
+            
             string filePath = @"C:\DataSprint5\InPutDataFileTask4V27.txt";
 
-           
+          
             Directory.CreateDirectory(@"C:\DataSprint5");
 
-          
+           
             if (!File.Exists(filePath))
             {
                 File.WriteAllText(filePath, "-1.26");
@@ -32,3 +31,4 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task4.V27
         }
     }
 }
+
