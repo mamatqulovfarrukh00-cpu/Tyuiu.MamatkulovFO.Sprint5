@@ -25,8 +25,8 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Lib
                 })
                 .Where(n => n.HasValue)
                 .Select(n => n.Value)
-                .Where(n => n > 0) // Faqat musbat sonlar
-                .Select(n => (int)Math.Floor(n)) // Butun qismiga yaxlitlash
+                .Where(n => n > 0) 
+                .Select(n => (int)Math.Floor(n)) 
                 .ToList();
 
             if (numbers.Count == 0)
