@@ -9,9 +9,18 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19
         static void Main()
         {
             string directoryPath = @"C:\DataSprint5";
+            string filePath = Path.Combine(directoryPath, "InputDataFileTask5V19.txt");
+
+            // Papkani yaratish
             Directory.CreateDirectory(directoryPath);
 
-            string filePath = Path.Combine(directoryPath, "InputDataFileTask5V19.txt");
+            // Faylni yaratish va ma'lumot yozish (agar fayl mavjud bo'lmasa)
+            if (!File.Exists(filePath))
+            {
+                string testData = "16 15.24 9 8 11 19 -3.43 -6 9.4 20 11.67 1.72 12.7 10.45 -4 17.23 6.45 6.7 -7.58 -0.74";
+                File.WriteAllText(filePath, testData);
+                Console.WriteLine("✅ Файл создан и заполнен тестовыми данными.");
+            }
 
             try
             {
