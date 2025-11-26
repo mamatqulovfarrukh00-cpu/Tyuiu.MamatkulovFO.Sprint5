@@ -35,7 +35,7 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19
                         else
                             return null;
                     })
-                    .Where(n => n.HasValue && n.Value > 0) // Faqat musbat sonlar
+                    .Where(n => n.HasValue && n.Value > 0 && n.Value <= 16) // Faqat 1 dan 16 gacha musbat sonlar
                     .Select(n => (int)Math.Floor(n.Value)) // Butun qismiga yaxlitlash
                     .ToList();
 
