@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Lib;
+
 namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19
 {
     class Program
@@ -11,10 +11,10 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19
             string directoryPath = @"C:\DataSprint5";
             string filePath = Path.Combine(directoryPath, "InputDataFileTask5V19.txt");
 
-            // Papkani yaratish
+          
             Directory.CreateDirectory(directoryPath);
 
-            // Faylni yaratish va ma'lumot yozish (agar fayl mavjud bo'lmasa)
+           
             if (!File.Exists(filePath))
             {
                 string testData = "16 15.24 9 8 11 19 -3.43 -6 9.4 20 11.67 1.72 12.7 10.45 -4 17.23 6.45 6.7 -7.58 -0.74";
@@ -35,8 +35,8 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19
                         else
                             return null;
                     })
-                    .Where(n => n.HasValue && n.Value > 0 && n.Value <= 16) // Faqat 1 dan 16 gacha musbat sonlar
-                    .Select(n => (int)Math.Floor(n.Value)) // Butun qismiga yaxlitlash
+                    .Where(n => n.HasValue && n.Value > 0 && n.Value <= 16) 
+                    .Select(n => (int)Math.Floor(n.Value)) 
                     .ToList();
 
                 if (numbers.Count == 0)
