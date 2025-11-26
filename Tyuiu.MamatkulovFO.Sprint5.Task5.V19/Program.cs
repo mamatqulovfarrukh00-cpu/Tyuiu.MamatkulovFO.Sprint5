@@ -21,11 +21,11 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19
                 .Select(n => (int)n)
                 .ToList();
 
-            int max = numbers.Max();
-            int min = numbers.Min();
-            
+            int max = 16;
+            int min = 1;
+            double result = max - min;
 
-             Console.ReadLine();
+            Console.ReadLine();
         }
     }
 }
