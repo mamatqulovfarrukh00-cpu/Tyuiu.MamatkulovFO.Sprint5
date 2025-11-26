@@ -31,8 +31,10 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task1.V8.Lib
                 }
                 else
                 {
+                    
                     formattedResult = result.ToString("F2");
-                    // Agar oxirgi raqam 0 bo'lsa, olib tashlash
+
+                   
                     if (formattedResult.EndsWith(",00"))
                     {
                         formattedResult = formattedResult.Substring(0, formattedResult.Length - 3);
