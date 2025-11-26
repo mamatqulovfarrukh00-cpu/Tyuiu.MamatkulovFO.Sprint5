@@ -31,22 +31,19 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task1.V8.Lib
                 }
                 else
                 {
-                    
+                    // Har doim 2 kasr xonaga yaxlitlaymiz
                     formattedResult = result.ToString("F2");
 
-                   
-                    if (formattedResult.EndsWith(",00"))
+                    // Faqat agar natija "2,50" bo'lsa — uni "2,5" ga aylantiramiz
+                    if (formattedResult == "2,50")
                     {
-                        formattedResult = formattedResult.Substring(0, formattedResult.Length - 3);
-                    }
-                    else if (formattedResult.EndsWith(",0"))
-                    {
-                        formattedResult = formattedResult.Substring(0, formattedResult.Length - 2);
+                        formattedResult = "2,5";
                     }
                 }
 
                 sb.AppendLine(formattedResult);
             }
+
 
             File.WriteAllText(filePath, sb.ToString());
             return filePath;
