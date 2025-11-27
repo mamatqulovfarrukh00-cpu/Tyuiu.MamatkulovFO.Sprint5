@@ -1,39 +1,43 @@
 ﻿using System;
 using System.IO;
+using System.Collections.Generic;
 using System.Linq;
 using tyuiu.cources.programming.interfaces.Sprint5;
-
 namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Lib
 {
     public class DataService:ISprint5Task5V19
     {
-        public double LoadFromDataFile(string path)
+        public double LoadFromDataFile(string filePath)
         {
-            if (!File.Exists(path))
-                throw new FileNotFoundException("Файл не найден", path);
+            if (!File.Exists(filePath))
+                throw new FileNotFoundException($"Файл не найден: {filePath}");
 
-            string content = File.ReadAllText(path);
+            var lines = File.ReadAllLines(filePath);
+            var singleDigitIntegers = new List<int>();
 
-            var numbers = content
-                .Split(new char[] { ' ', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries)
-                .Select(s =>
+            foreach (var line in lines)
+            {
+                var parts = line.Split(new char[] { ' ', '\t', ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var part in parts)
                 {
-                    if (double.TryParse(s.Trim(), out double value))
-                        return (double?)value;
-                    else
-                        return null;
-                })
-                .Where(n => n.HasValue && n.Value > 0) // Faqat musbat sonlar
-                .Select(n => (int)Math.Floor(n.Value)) // Butun qismiga yaxlitlash
-                .ToList();
+                    if (int.TryParse(part.Trim(), out int number))
+                    {
+                        // Проверяем, является ли число однозначным целым (-9 <= x <= 9)
+                        if (number >= -9 && number <= 9)
+                        {
+                            singleDigitIntegers.Add(number);
+                        }
+                    }
+                }
+            }
 
-            if (numbers.Count == 0)
-                throw new InvalidOperationException("В файле нет подходящих чисел.");
+            if (singleDigitIntegers.Count == 0)
+                throw new InvalidOperationException("В файле нет однозначных целых чисел.");
 
-            int max = numbers.Max();
-            int min = numbers.Min();
+            int max = singleDigitIntegers.Max();
+            int min = singleDigitIntegers.Min();
 
-            return Math.Round((double)(max - min), 3);
+            return Math.Round(max - min, 3); // Разница как double, округляем до 3 знаков
         }
     }
 }

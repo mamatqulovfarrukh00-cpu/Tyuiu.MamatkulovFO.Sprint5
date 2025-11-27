@@ -11,21 +11,17 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Test
         [TestMethod]
         public void TestMethod1()
         {
-            // Faylni yaratish (agar kerak bo'lsa)
             string tempPath = Path.GetTempFileName();
             File.WriteAllText(tempPath, "16 15.24 9 8 11 19 -3.43 -6 9.4 20 11.67 1.72 12.7 10.45 -4 17.23 6.45 6.7 -7.58 -0.74");
 
             var service = new DataService();
             double result = service.LoadFromDataFile(tempPath);
 
-            // Kutilgan natija: 15.0
             Assert.AreEqual(15.0, result, 0.001);
 
-            // Faylni o'chirish
             File.Delete(tempPath);
         }
 
-        // Agar test tizimi Main() metodini kutayotgan bo'lsa:
         public static void Main()
         {
             try
@@ -43,8 +39,6 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Test
             {
                 Console.WriteLine($"Ошибка: {ex.Message}");
             }
-
-            Console.ReadLine();
         }
     }
 }
