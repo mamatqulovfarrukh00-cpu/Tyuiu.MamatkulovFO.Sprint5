@@ -1,9 +1,8 @@
 ﻿using System;
 using System.IO;
-
 using Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Lib;
 
-namespace Tyuiu.MamatkulovFO.Sprint5.Task4.V27
+namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19
 {
     class Program
     {
@@ -12,7 +11,7 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task4.V27
             try
             {
                 string directoryPath = @"C:\DataSprint5";
-                string fileName = "InPutDataFileTask4V27.txt";
+                string fileName = "InputDataFileTask5V19.txt";
                 string filePath = Path.Combine(directoryPath, fileName);
 
                 if (!File.Exists(filePath))
