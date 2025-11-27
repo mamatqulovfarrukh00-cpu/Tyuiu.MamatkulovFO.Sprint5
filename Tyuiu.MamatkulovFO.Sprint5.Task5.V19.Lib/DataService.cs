@@ -18,7 +18,7 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Lib
                 {
                     if (int.TryParse(part.Trim(), out int number))
                     {
-                        // Фильтр: только однозначные целые числа (-9 <= x <= 9)
+                        // Только однозначные целые числа: от -9 до 9
                         if (number >= -9 && number <= 9)
                         {
                             singleDigitIntegers.Add(number);
@@ -33,7 +33,9 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Lib
             int max = singleDigitIntegers.Max();
             int min = singleDigitIntegers.Min();
 
-            return Math.Round(max - min, 3); // Округляем до 3 знаков
+            // Преобразуем в double и округляем
+            double difference = max - min;
+            return Math.Round(difference, 3);
         }
     }
 }

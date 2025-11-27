@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
 using Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Lib;
@@ -17,7 +18,7 @@ namespace Tyuiu.MamatkulovFO.Sprint5.Task5.V19.Test
             var service = new DataService();
             double result = service.LoadFromDataFile(tempPath);
 
-            Assert.AreEqual(15.0, result, 0.001); // Должно быть 15.0
+            Assert.AreEqual(15.0, result, 0.001);
 
             File.Delete(tempPath);
         }
